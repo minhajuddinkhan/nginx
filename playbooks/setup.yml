@@ -1,2 +1,3 @@
 - include: ./api/main.yml
 - include: ./api/nginx.yml
+- include: ./api/run.yml

@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  name: configure api vars
+  become: yes
+  become_method: sudo
+  tags:
+    - gateway-nginx
+  tasks:
+    - name: started node server api
+      shell: node ../../server.js
