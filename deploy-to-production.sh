@@ -1,3 +1,3 @@
 #/bin/bash
 
-ansible-play
+sudo ansible-playbook -v playbooks/setup.yml
