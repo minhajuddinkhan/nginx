@@ -2,7 +2,7 @@ deployment:
   production: # just a label; label names are completely up to you
     branch: master
     commands:
-      - sudo bash deploy-to-production.sh
+      - ./deploy-to-production.sh
 test:
   override:
     - echo "test"
