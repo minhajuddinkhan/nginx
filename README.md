@@ -20,7 +20,7 @@
   node server
 ```
 
-And its done! go to ```localhost``` to verify. If its not working. delete the default service nginx is running.
+And its done! go to ```localhost``` to verify. If its not working, delete the ```default``` site nginx is running.
 
 ``` path : /etc/nginx/sites-enabled/default ```
 
