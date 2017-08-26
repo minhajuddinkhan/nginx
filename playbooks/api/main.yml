@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  name: configure api vars
+  become: yes
+  become_method: sudo
+  tags:
+    - gateway-nginx
+  tasks:
+    - name: configure api
+      set_fact:
+        api_host: api
+        api_http_port: 3000

@@ -1,4 +1,3 @@
 #/bin/bash
 
-
-touch yolo.js
+ansible-play

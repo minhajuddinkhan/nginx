@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  name: nginx
+  become: yes
+  become_method: sudo
+  tags:
+    - gateway-nginx
+  tasks:
+    - name: configure nginx to enabled sites
+      template: src=../templates/api/nginx.conf.j2 dest=/etc/nginx/sites-enabled/api.conf
+
+    - name: configure nginx to available sites
+      template: src=../templates/api/nginx.conf.j2 dest=/etc/nginx/sites-available/api.conf
+
+    - name: reload nginx
+      shell: |
+        sudo service nginx restart

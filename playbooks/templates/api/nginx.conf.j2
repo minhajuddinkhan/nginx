@@ -1,0 +1,10 @@
+server {
+    server_name  {{ api_host }};
+    listen 80;
+    listen 443 ssl;
+    location / {
+        proxy_pass http://127.0.0.1:{{ api_http_port }};
+        proxy_set_header Host      $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
