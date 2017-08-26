@@ -1,4 +1,4 @@
 #/bin/bash
 
 
-echo 'DEPLOYING TO PROD'
+touch yolo.js
