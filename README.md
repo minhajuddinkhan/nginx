@@ -1,6 +1,31 @@
-# nginx - circle ci - ansible playbooks
+# NodeJS with NGINX
 
-trying to run shit with nginx and cirlceCi
+## Steps to get started :
+### Install NGINX
+
+```
+  sudo apt-get update
+  sudo apt-get install nginx
+```
+
+### Run the Deployment bash script
+
+```
+  sudo chmod +x deploy-to-production.sh && ./deploy-to-production.sh 
+ ```
+
+### Run your server
+
+```javascript
+  node server
+```
+
+And its done! go to ```localhost``` to verify. If its not working. delete the default service nginx is running.
+
+``` path : /etc/nginx/sites-enabled/default ```
+
+
+# Integrated with CircleCI and Ansible
 
 ### circle.yml
 
@@ -15,7 +40,7 @@ test:
     - echo "test"
 ```
 
-### configure the template for ngnix server
+### configation template for ngnix server
 ```bash
 server {
     server_name  {{ api_host }};
@@ -30,7 +55,7 @@ server {
 ```
 
 
-### setup task for creating an nginx server
+### task for creating nginx server
 ```yml
 ---
 - hosts: localhost
@@ -50,6 +75,22 @@ server {
       shell: |
         sudo service nginx restart
 ``` 
+### executing the playbooks
 
-##### run the setup bash file
-```sudo chmod +x deploy-to-production.sh && ./deploy-to-production.sh ```
+##### ```deploy-to-production.sh```
+
+```
+#/bin/bash
+
+if [ $(dpkg-query -W -f='${Status}' ansible 2>/dev/null | grep -c "ok installed") = 0 ]
+then
+    sudo apt-get update -y; \
+    sudo apt-get install software-properties-common -y; \
+    sudo apt-add-repository ppa:ansible/ansible -y; \
+    sudo apt-get update -y; \
+    sudo apt-get install ansible -y
+fi
+
+
+sudo ansible-playbook -v playbooks/setup.yml
+```
